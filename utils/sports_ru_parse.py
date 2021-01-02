@@ -20,8 +20,7 @@ def show_matches():
         #info_match[0].text # дата
         match_time.append(info_match[1].text) # время
         home_team.append(info_match[-3].text) # домашняя команда
-        guest_team.append(info_match[-1].text) # гостевая команда
-    
+        guest_team.append(info_match[-1].text) # гостевая команда 
     for items in match:
         link_match = items.find_all('a')
         link_match.append(items.get('href')) # ссылки на матч и команды
