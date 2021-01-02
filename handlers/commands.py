@@ -7,4 +7,8 @@ from aiogram.types import Message, CallbackQuery
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
-    await message.answer("Приветики, {}!".format(message.from_user.full_name), reply_markup=football_matches)
+    await message.answer("Приветики, {}. Для просмотра списка матчей введи /show!".format(message.from_user.full_name))
+
+@dp.message_handler(commands=['show'])
+async def start_command(message: types.Message):
+    await message.answer('Вот, что я могу тебе показать', reply_markup=football_matches)

@@ -10,7 +10,7 @@ from aiogram.types import Message, CallbackQuery
 async def matches(call: CallbackQuery):
     data, time_list, home_team_list, guest_team_list, link_match = show_matches()
     await call.answer('Ближайший тур Seria A')
-    await call.message.answer('Расписание матчей на ближайший тур {}'.format(data))
+    await call.message.answer('Расписание матчей на ближайший тур {}:'.format(data))
     for time, home, guest in zip(time_list, home_team_list, guest_team_list):
         await call.message.answer('{}: {} - {}'.format(time, home, guest))
         
