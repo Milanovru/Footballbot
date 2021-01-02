@@ -1,7 +1,5 @@
 from config import dp, bot
 from aiogram import types
-from aiogram.dispatcher.filters.state import StatesGroup, State
-from aiogram.dispatcher import FSMContext
 from buttons import football_matches
 from aiogram.types import Message, CallbackQuery
 

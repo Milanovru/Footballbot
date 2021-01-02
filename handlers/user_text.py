@@ -2,7 +2,7 @@ from config import dp
 from aiogram import types
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
-from utils.sports_ru_parse import show_matches
+from utils import show_matches
 from buttons import football_matches
 from aiogram.types import Message, CallbackQuery
 
