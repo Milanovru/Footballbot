@@ -6,4 +6,9 @@ from utils.sports_ru_parse import show_matches
 
 @dp.message_handler(text='матчи')
 async def matches(message: types.Message):
-    await message.answer('В разработке')
+    data, time_list, home_team_list, guest_team_list = show_matches()
+    await message.answer('Расписание матчей на ближайший тур {}'.format(data))
+    for time, home, guest in zip(time_list, home_team_list, guest_team_list):
+        await message.answer('{}: {} - {}'.format(time, home, guest))
+        
+    
