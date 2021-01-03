@@ -13,4 +13,4 @@ async def matches(call: CallbackQuery):
     await call.message.answer('Расписание матчей на ближайший тур {}:'.format(data))
     for time, home, guest in zip(time_list, home_team_list, guest_team_list):
         await call.message.answer('{}: {} - {}'.format(time, home, guest))
-        
+    print(link_match)
