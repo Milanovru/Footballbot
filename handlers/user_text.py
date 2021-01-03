@@ -17,13 +17,6 @@ async def matches(call: CallbackQuery):
     for time, home, guest, link in zip(time_list, home_team_list, guest_team_list, link_list):
             await call.message.answer('{}: {} - {} {}'.format(time, home, guest, link), disable_web_page_preview=True)
     
-
-@dp.message_handler(text='тест')
-async def test(message: types.Message):
-    link_list = show_link_matches()
-    #await message.answer('\n'.join(link_list)) # вывод одним сообщением  
-    for link in link_list:     
-        await message.answer('{}'.format(link), disable_web_page_preview= True)
         
     
     
