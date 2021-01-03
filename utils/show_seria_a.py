@@ -26,8 +26,11 @@ def mod_show_link_matches(link_matches):
     tmp_list = []
     https = 'https://www.sports.ru'
     for link in link_matches:
-        if not link.find('/',0,1):
-            tmp_list.append(https+link)
+        if '/match/' in link:
+            if link.startswith('https'):
+                tmp_list.append(link)
+            else:
+                tmp_list.append(https+link)
     return tmp_list
 
 def show_table():

@@ -2,7 +2,7 @@ from config import dp
 from aiogram import types
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
-from utils import show_matches, show_link_matches, show_table
+from utils import show_matches, show_table, show_link_matches
 from buttons import football_matches, Seria_a
 from aiogram.types import Message, CallbackQuery
 
@@ -21,8 +21,8 @@ async def send_seria_a(call: CallbackQuery):
     await call.message.answer('Расписание матчей на ближайший тур {}:'.format(data))
     for time, home, guest, link in zip(time_list, home_team_list, guest_team_list, link_list):
         # strip() убирает лишние пробелы до и после строки
-            await call.message.answer('{}: {} - {}\n{}'.format(time.strip(), home.strip(), guest.strip(), link), disable_web_page_preview=True)
-    
+            await call.message.answer('{}: {} - {}\n{}'.format(time.strip(), home.strip(), guest.strip(), link.strip()), disable_web_page_preview=True)
+    print(len(time_list), len(home_team_list), len(guest_team_list), len(link_list))
 @dp.callback_query_handler(text='show_commands')
 async def send_seria_a(call: CallbackQuery):  
     await call.answer('В разработке')
