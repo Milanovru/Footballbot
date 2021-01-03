@@ -33,4 +33,4 @@ async def send_seria_a(call: CallbackQuery):
     position_list, team_list = show_table()
     await call.answer('Таблица Seria A')
     for position, team in zip(position_list, team_list):
-        await call.message.answer('{}:{}'.format(position, team))
+        await call.message.answer('{}:{}'.format(position.strip(), team.strip()))
