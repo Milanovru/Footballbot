@@ -17,5 +17,4 @@ def show_matches():
         link_match = items.find_all('a')
         for link in link_match:
             link_matches.append(link.get('href')) # ссылки на матч и команды
-
     return info_match[0].text, match_time, home_team, guest_team, link_matches
