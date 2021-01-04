@@ -10,7 +10,7 @@ async def start_command(message: types.Message):
 # этот хендлер задает дефолтный список команд
 @dp.message_handler(commands="set_commands", state="*")
 async def cmd_set_commands(message: types.Message):
-    commands = [types.BotCommand(command="/show", description="Посмотреть список матчей")]
+    commands = [types.BotCommand(command="/show", description="Меню")]
     await bot.set_my_commands(commands)
 
 @dp.message_handler(commands=['show'])
