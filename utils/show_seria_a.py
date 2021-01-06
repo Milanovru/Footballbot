@@ -20,9 +20,9 @@ def show_link_matches():
         link_match = items.find_all('a')
         for link in link_match:
             link_matches.append(link.get('href')) # ссылки на матч и команды
-    return mod_show_link_matches(link_matches)
+    return mod_link_matches(link_matches)
 
-def mod_show_link_matches(link_matches): # фильтрует ссылки на ТОЛЬКО матчей
+def mod_link_matches(link_matches): # фильтрует ссылки на ТОЛЬКО матчей
     tmp_list = []
     https = 'https://www.sports.ru'
     for link in link_matches:
@@ -55,4 +55,4 @@ def show_table():
         LG_list.append(info[7].text) # кол-во пропущенных мячей
         P_list.append(info[8].text) # кол-во очкой    
     return position_list, team_list, M_list, W_list, N_list, L_list, SG_list, LG_list, P_list
-    #print(info[0].text, info[1].text, info[2].text, info[3].text, info[4].text, info[5].text, info[6].text, info[7].text, info[8].text)
+    

@@ -6,7 +6,7 @@ seria_a = InlineKeyboardButton(text='Seria A 🇮🇹', callback_data='seria_a')
 football_matches.insert(seria_a)
 
 Seria_a = InlineKeyboardMarkup(row_width=2)
-show_commands = InlineKeyboardButton(text='Обзор команд Seria A', callback_data='show_commands')
+show_commands = InlineKeyboardButton(text='Последние новости Seria A', callback_data='show_news')
 Seria_a.add(show_commands)
 anons_matches = InlineKeyboardButton(text='Анонс матчей', callback_data='anons_matches')
 Seria_a.add(anons_matches)

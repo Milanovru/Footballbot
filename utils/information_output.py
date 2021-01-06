@@ -1,4 +1,5 @@
 from utils.show_seria_a import show_matches, show_link_matches, show_table
+from utils.show_news import show_link_news, show_news
 from prettytable import PrettyTable
 
 def send_information_seria_a(): # выводит анонс предстоящих матчей
@@ -24,3 +25,13 @@ def send_table_seria_a():
     x.add_column("Пр", [x.strip() for x in LG_list])
     x.add_column("О", [x.strip() for x in P_list])
     return x
+
+def send_news():
+    tmp_list = []
+    links_list = show_link_news()
+    data, news_list = show_news()
+    for news, links in zip(news_list, links_list):
+        s = ''
+        s += '{}\n{}\n'.format(news, links)
+        tmp_list.append(s)
+    return data, tmp_list

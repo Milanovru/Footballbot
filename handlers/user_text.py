@@ -2,7 +2,7 @@ from config import dp
 from aiogram import types
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
-from utils import send_information_seria_a, send_table_seria_a
+from utils import send_information_seria_a, send_table_seria_a, send_news
 from buttons import football_matches, Seria_a, out_keyboard
 from aiogram.types import Message, CallbackQuery
 
@@ -18,11 +18,13 @@ async def send_seria_a(call: CallbackQuery):
     data, info_list = send_information_seria_a()
     #await message.answer('\n'.join(link_list)) # вывод одним сообщением 
     await call.message.answer('Расписание матчей на ближайший тур {}:\n'.format(data)+ '\n'.join(info_list),disable_web_page_preview=True, reply_markup=out_keyboard)
-       
-@dp.callback_query_handler(text='show_commands')
+
+@dp.callback_query_handler(text='cancel')      
+@dp.callback_query_handler(text='show_news')
 async def send_seria_a(call: CallbackQuery):  
-    await call.answer('В разработке',)
-    await call.message.answer('В разработке')
+    await call.answer('Просмотр новостей')
+    date, news = send_news()
+    await call.message.answer(date + '\n\n' + '\n'.join(news[:3]), reply_markup=out_keyboard, disable_web_page_preview=True) # выводит последние 3 новости
 
 @dp.callback_query_handler(text='table')
 async def send_seria_a(call: CallbackQuery):

@@ -1,12 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
-from conf_data import PARSE_LINK
+from conf_data import PARSE_LINK_ITALY, PARSE_LINK_NEWS
 
-responce = requests.get(PARSE_LINK).text
-soup = BeautifulSoup(responce, features='html.parser')
+responce_italy = requests.get(PARSE_LINK_ITALY).text
+responce_news = requests.get(PARSE_LINK_NEWS).text
 
-info = soup.find_all('tbody')
+soup_italy = BeautifulSoup(responce_italy, 'lxml')
+soup_news = BeautifulSoup(responce_news, 'lxml')
 
+info = soup_italy.find_all('tbody')
+show_new = soup_news.body.find('div', id='branding-layout').find('div', class_ = "pageLayout").find('div', class_ = "contentLayout js-active").find('div', class_='layout-columns layout-columns_nopaddingTop').find('div', class_='news').find('div')
 # присылает ссылки на мачти
 match = info[0].find_all('tr') # показывает вкладку "календарь", предстоящие матчи
 table = info[1].find_all('tr') # показывает таблицу
