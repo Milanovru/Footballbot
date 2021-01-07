@@ -12,6 +12,12 @@ anons_matches = InlineKeyboardButton(text='Анонс матчей', callback_da
 Seria_a.add(anons_matches)
 table_seria_a = InlineKeyboardButton(text='Таблица', callback_data='table')
 Seria_a.add(table_seria_a)
-out_keyboard = InlineKeyboardMarkup(row_width=2)
+
+out_keyboard = InlineKeyboardMarkup()
 cancel= InlineKeyboardButton(text='Назад в меню', callback_data='cancel')
 out_keyboard.add(cancel)
+
+full_news = InlineKeyboardMarkup()
+full = InlineKeyboardButton(text='Все новости', callback_data='full')
+full_news.add(full)
+full_news.add(cancel)
