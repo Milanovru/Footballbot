@@ -1,6 +1,4 @@
-from utils.sports_ru_parse import show_new
-
-def show_news():
+def show_news(show_new):
     data = show_new.b.text # дата
     tmp_list = []
     for news in show_new.find_all('p', class_='one_news'):
@@ -9,7 +7,7 @@ def show_news():
         tmp_list.append(s) 
     return data, tmp_list
     
-def show_link_news():
+def show_link_news(show_new):
     link_list = []
     for i in show_new.find_all('a'):
         if not i.get('href').endswith('comments'):

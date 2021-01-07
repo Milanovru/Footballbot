@@ -1,8 +1,5 @@
-from utils.sports_ru_parse import match
-from utils.sports_ru_parse import table
-
 # показывает вкладку "календарь", предстоящие матчи
-def show_matches():
+def show_matches(match):
     match_time = []
     home_team =[]
     guest_team = []
@@ -14,7 +11,7 @@ def show_matches():
         guest_team.append(info_match[-1].text) # гостевая команда
     return info_match[0].text, match_time, home_team, guest_team
 
-def show_link_matches(): 
+def show_link_matches(match): 
     link_matches = []
     for items in match:
         link_match = items.find_all('a')
@@ -33,7 +30,7 @@ def mod_link_matches(link_matches): # фильтрует ссылки на ТО�
                 tmp_list.append(https+link)
     return tmp_list
 
-def show_table():
+def show_table(table):
     position_list = []
     team_list = []
     M_list = []
