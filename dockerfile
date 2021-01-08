@@ -1,11 +1,11 @@
 FROM python:3.9.0
 
-WORKDIR /src
+WORKDIR /usr/src/app
 
-COPY requirements.txt /src
+COPY requirements.txt /usr/src/app
 
-RUN pip install -r requirements.txt /src
+RUN pip install -r requirements.txt /usr/src/app
 
-COPY . /src
+COPY . /usr/src/app
 
 CMD ["python3", "bot.py"]
