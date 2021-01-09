@@ -2,3 +2,4 @@ aiogram==2.11.2
 beautifulsoup4==4.9.3
 prettytable==2.0.0
 lxml==4.6.2
+requests==2.25.0
