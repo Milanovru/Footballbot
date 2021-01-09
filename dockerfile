@@ -1,9 +1,9 @@
 FROM python:3.9.0
 
-WORKDIR /TelegramBots/Footballbot
+WORKDIR /app
 
-COPY requirements.txt /TelegramBots/Footballbot
+COPY requirements.txt /app
 
 RUN pip install -r requirements.txt 
 
-COPY . /TelegramBots/Footballbot
+COPY . /app
