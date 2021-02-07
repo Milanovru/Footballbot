@@ -38,3 +38,7 @@ async def send_seria_a(call: CallbackQuery):
     await call.answer('Таблица Seria A')  
     await call.message.answer(send_table_seria_a(show_table), reply_markup=out_keyboard)
     
+
+@dp.message_handler(text='test')
+async def test(message: types.Message):
+    await message.answer(message.from_user.id)
