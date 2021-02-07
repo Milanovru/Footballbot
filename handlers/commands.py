@@ -9,8 +9,10 @@ db = Database()
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
+    id = message.from_user.id
+    user_name = message.from_user.full_name
     await message.answer("Приветики, {}. Для просмотра списка матчей введи /seria_a!".format(message.from_user.full_name))
-
+    db.insert_user(id, user_name)
 
 # этот хендлер задает дефолтный список команд
 @dp.message_handler(commands="set_commands", state="*")
