@@ -1,7 +1,14 @@
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from conf_data import BOT_TOKEN
+import os
+from dotenv import load_dotenv
+import asyncio
 
-bot = Bot(token= BOT_TOKEN, parse_mode= types.ParseMode.HTML)
+
+load_dotenv()
+
+loop = asyncio.get_event_loop()
+
+bot = Bot(token=os.getenv('BOT_TOKEN'), parse_mode= types.ParseMode.HTML)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage= storage)

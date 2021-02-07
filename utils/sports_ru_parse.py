@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
-from conf_data import PARSE_LINK_ITALY, PARSE_LINK_NEWS
+import os
+from dotenv import load_dotenv
 
-responce_italy = requests.get(PARSE_LINK_ITALY).text
-responce_news = requests.get(PARSE_LINK_NEWS).text
+responce_italy = requests.get(os.getenv('PARSE_LINK_ITALY')).text
+responce_news = requests.get(os.getenv('PARSE_LINK_NEWS')).text
 
 soup_italy = BeautifulSoup(responce_italy, 'lxml')
 soup_news = BeautifulSoup(responce_news, 'lxml')
