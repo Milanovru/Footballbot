@@ -1,4 +1,4 @@
-from config import dp
+from config import dp, admins
 from aiogram import types
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
@@ -42,3 +42,8 @@ async def send_seria_a(call: CallbackQuery):
 @dp.message_handler(text='test')
 async def test(message: types.Message):
     await message.answer(message.from_user.id)
+
+
+async def send_message(dp):  # это обработчик для шедулера
+    print('test')
+    await dp.bot.send_message(admins[0], 'это сообщение по таймингу')
