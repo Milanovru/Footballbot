@@ -5,6 +5,7 @@ from aiogram.dispatcher import FSMContext
 from utils import send_information_seria_a, send_table_seria_a, send_news
 from utils.show_seria_a import show_matches, show_link_matches, show_table
 from utils.sports_ru_parse import show_new
+from utils.for_sheduler.from_cron import test_cron
 from buttons import football_matches, Seria_a, out_keyboard, full_news
 from aiogram.types import Message, CallbackQuery
 
@@ -41,9 +42,9 @@ async def send_seria_a(call: CallbackQuery):
 
 @dp.message_handler(text='test')
 async def test(message: types.Message):
+    #test_cron(show_matches, show_link_matches)
     await message.answer(message.from_user.id)
 
 
 async def send_message(dp):  # это обработчик для шедулера
-    print('test')
-    await dp.bot.send_message(admins[0], 'это сообщение по таймингу')
+    await dp.bot.send_message(admins[0], 'это сообщение по таймингу, Милан играет через 2 часа')

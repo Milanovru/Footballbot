@@ -2,6 +2,7 @@ from utils.show_news import show_link_news, show_news
 from utils.sports_ru_parse import match, table
 from prettytable import PrettyTable
 
+
 def send_information_seria_a(show_matches, show_link_matches): # выводит анонс предстоящих матчей
     tmp_list = []
     data, time_list, home_team_list, guest_team_list = show_matches(match)
@@ -11,6 +12,7 @@ def send_information_seria_a(show_matches, show_link_matches): # выводит 
         s += '{}: {} - {}\n{}\n'.format(time.strip(), home_teams.strip(), guest_team.strip(), link.strip())
         tmp_list.append(s)
     return data, tmp_list
+
 
 def send_table_seria_a(show_table):
     x = PrettyTable()
@@ -26,6 +28,7 @@ def send_table_seria_a(show_table):
     x.add_column("О", [x.strip() for x in P_list])
     return x
 
+
 def send_news(show_new):
     tmp_list = []
     links_list = show_link_news(show_new)
@@ -35,3 +38,4 @@ def send_news(show_new):
         s += '{}\n{}\n'.format(news, links)
         tmp_list.append(s)
     return data, tmp_list
+    
