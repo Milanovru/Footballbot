@@ -18,9 +18,9 @@ async def send_football(call: CallbackQuery):
 @dp.callback_query_handler(text='anons_matches')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Ближайший тур Seria A')
-    data, info_list = send_information_seria_a(show_matches, show_link_matches)
+    info_list = send_information_seria_a(show_matches, show_link_matches)
     #await message.answer('\n'.join(link_list)) # вывод одним сообщением 
-    await call.message.answer('Расписание матчей на ближайший тур {}:\n'.format(data)+ '\n'.join(info_list),disable_web_page_preview=True, reply_markup=out_keyboard)
+    await call.message.answer('Расписание матчей на ближайший тур:\n\n' + '\n'.join(info_list),disable_web_page_preview=True, reply_markup=out_keyboard)
 
 @dp.callback_query_handler(text='full')
 async def send_seria_a(call: CallbackQuery):  

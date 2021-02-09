@@ -5,13 +5,13 @@ from prettytable import PrettyTable
 
 def send_information_seria_a(show_matches, show_link_matches): # выводит анонс предстоящих матчей
     tmp_list = []
-    data, time_list, home_team_list, guest_team_list = show_matches(match)
+    data_list, time_list, home_team_list, guest_team_list = show_matches(match)
     link_list = show_link_matches(match)
-    for time, home_teams, guest_team, link in zip(time_list, home_team_list, guest_team_list, link_list):
+    for data, time, home_teams, guest_team, link in zip(data_list, time_list, home_team_list, guest_team_list, link_list):
         s  = ''
-        s += '{}: {} - {}\n{}\n'.format(time.strip(), home_teams.strip(), guest_team.strip(), link.strip())
+        s += '{} {}: {} - {}\n{}\n'.format(data.strip(), time.strip(), home_teams.strip(), guest_team.strip(), link.strip())
         tmp_list.append(s)
-    return data, tmp_list
+    return tmp_list
 
 
 def send_table_seria_a(show_table):

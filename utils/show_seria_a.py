@@ -1,15 +1,17 @@
 # показывает вкладку "календарь", предстоящие матчи
 def show_matches(match):
+    match_data = []
     match_time = []
     home_team =[]
     guest_team = []
     for items in match:
         info_match = items.find_all('td')
         #info_match[0].text # дата
+        match_data.append(info_match[0].text) # дата
         match_time.append(info_match[1].text) # время
         home_team.append(info_match[-3].text) # домашняя команда
         guest_team.append(info_match[-1].text) # гостевая команда
-    return info_match[0].text, match_time, home_team, guest_team
+    return match_data, match_time, home_team, guest_team
 
 def show_link_matches(match): 
     link_matches = []
