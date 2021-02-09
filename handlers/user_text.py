@@ -42,8 +42,8 @@ async def send_seria_a(call: CallbackQuery):
 
 @dp.message_handler(text='test')
 async def test(message: types.Message):
-    #test_cron(show_matches, show_link_matches)
-    await message.answer(message.from_user.id)
+    test_cron(show_matches, show_link_matches)
+    #await message.answer(message.from_user.id)
 
 
 async def send_message(dp):  # это обработчик для шедулера
