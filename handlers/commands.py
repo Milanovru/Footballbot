@@ -1,6 +1,6 @@
 from config import dp, bot
 from aiogram import types
-from buttons import football_matches
+from buttons import football_matches, subscriptions
 from aiogram.types import Message, CallbackQuery
 from config import admins
 from utils.data_base.db_api import Database
@@ -13,14 +13,16 @@ db = Database()
 async def start_command(message: types.Message):
     id = message.from_user.id
     user_name = message.from_user.full_name
-    await message.answer("Приветики, {}. Для просмотра списка матчей введи /seria_a!".format(message.from_user.full_name))
-    db.insert_user(id, user_name)
+    await message.answer("Привет, <b>{}</b>.\nДля просмотра списка матчей введи /seria_a;\nДля меню подписок введи /subscriptions.".format(message.from_user.full_name))
+    #db.insert_user(id, user_name)
 
 
 # этот хендлер задает дефолтный список команд
-@dp.message_handler(commands="set_commands", state="*")
+@dp.message_handler(commands="set_commands", state="*", user_id=admins[0])
 async def cmd_set_commands(message: types.Message):
-    commands = [types.BotCommand(command="/seria_a", description="Просмотр меню Seria_a")]
+    commands = [types.BotCommand(command="/seria_a", description="Просмотр меню Seria_a"),
+                types.BotCommand(command="/subscriptions", description="Подписки на анонсы матчей интересующей команды")
+    ]
     await bot.set_my_commands(commands)
     await message.answer('Изменения внесены')
 
@@ -30,8 +32,12 @@ async def start_command(message: types.Message):
     await message.answer('Вот, что я могу тебе показать', reply_markup=football_matches)
 
 
-#@dp.message_handler(user_id=admins[0])
-@dp.message_handler(commands=['create_db'])
+@dp.message_handler(commands=['create_db'], user_id=admins[0])
 async def create_db(message: types.Message):
     db.create_table()
     await message.answer('база данных создана успешно!')
+
+
+@dp.message_handler(commands=['subscriptions'])
+async def start_command(message: types.Message):
+    await message.answer('Что хочешь сделать?', reply_markup=subscriptions)
