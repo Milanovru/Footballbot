@@ -16,13 +16,9 @@ class Database:
                             );
                     """)
                     print('бд создана успешно')
-                    connection.commit()
-                    cursor.close()
-            finally:
+            except psycopg2.DatabaseError as e:
                 print('что-то пошло нетак')
-                
-                
-        
+                  
 
     def insert_user(self, id, name):
         with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),
@@ -33,6 +29,7 @@ class Database:
                             INSERT INTO Users VALUES ('{}','{}');
                     """.format(id, name))
                     print('пользователь добавлен успешно')
-            finally:
-                print('такой пользователь уже существует в базе данных')
+            except psycopg2.DatabaseError as e:
+                print('ошибочка вышла')
+            
                 
