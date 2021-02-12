@@ -73,13 +73,10 @@ async def send_seria_a(call: CallbackQuery):
 async def test(message: types.Message):
     #test_cron(show_matches, show_link_matches)
     #await message.answer(message.from_user.id)
-    subscribers = db.select_subscribers()
-    for subscriber in subscribers:
-        print(subscriber[0])
-    #pass
-
+    pass
 
 async def send_message(dp):  # это обработчик для шедулера
     subscribers = db.select_subscribers()
     for subscriber in subscribers:
+        # ('1027622714', 'Pavel Milanov')
         await dp.bot.send_message(subscriber[0], 'это сообщение по таймингу, Милан играет через 2 часа')
