@@ -28,9 +28,11 @@ class Database:
                     cursor.execute("""
                             INSERT INTO Users VALUES ('{}','{}');
                     """.format(id, name))
-                    print('пользователь добавлен успешно')
+                    return 'Вы подписались на матчи Милана!'
             except psycopg2.DatabaseError as e:
-                print('ошибочка вышла')
+                return 'ошибочка вышла'
+            finally:
+                return 'Вы уже подписаны'
             
 
     def delete_user(self, id):
@@ -39,8 +41,10 @@ class Database:
             try:
                 with connection.cursor() as cursor:
                     cursor.execute("""
-                            DELETE FROM Users WHERE id='{}';
+                            DELETE FROM Users WHERE user_id='{}';
                     """.format(id))
-                    print('пользователь удален успешно')
+                    return 'Вы больше не подписаны!'
             except psycopg2.DatabaseError as e:
-                print('ошибочка вышла')
+                return 'что-то пошло нетак'
+            finally:
+                return 'Вы не подписаны'

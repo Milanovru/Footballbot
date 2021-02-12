@@ -53,15 +53,21 @@ async def send_seria_a(call: CallbackQuery):
     await call.answer('Оформление подписки')
     id = call.message.from_user.id
     user_name = call.message.from_user.full_name
-    db.insert_user(id, user_name)
-    await call.message.answer('В разработке!')
-
+    try:
+        check = db.insert_user(id, user_name)
+        await call.message.answer(check)
+    except:
+        await call.message.answer(check)
 
 @dp.callback_query_handler(text='unsubscript')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Удаление подписки')
-    await call.message.answer('В разработке!')
-
+    id = call.message.from_user.id
+    try:
+        check = db.delete_user(id)
+        await call.message.answer(check)
+    except:
+        await call.message.answer(check)
 
 @dp.message_handler(text='test')
 async def test(message: types.Message):
