@@ -51,8 +51,8 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='subscript')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Оформление подписки')
-    id = call.message.from_user.id
-    user_name = call.message.from_user.full_name
+    id = call.from_user.id
+    user_name = call.from_user.full_name
     try:
         check = db.insert_user(id, user_name)
         await call.message.answer(check)
@@ -62,7 +62,7 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='unsubscript')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Удаление подписки')
-    id = call.message.from_user.id
+    id = call.from_user.id
     try:
         check = db.delete_user(id)
         await call.message.answer(check)

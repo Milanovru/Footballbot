@@ -31,7 +31,7 @@ class Database:
                     return 'Вы подписались на матчи Милана!'
             except psycopg2.DatabaseError as e:
                 return 'ошибочка вышла'
-            finally:
+            except:
                 return 'Вы уже подписаны'
             
 
@@ -45,6 +45,4 @@ class Database:
                     """.format(id))
                     return 'Вы больше не подписаны!'
             except psycopg2.DatabaseError as e:
-                return 'что-то пошло нетак'
-            finally:
-                return 'Вы не подписаны'
+                return 'ошибка в работе с базой данных'
