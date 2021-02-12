@@ -8,7 +8,10 @@ from utils.sports_ru_parse import show_new
 from utils.for_sheduler.from_cron import test_cron
 from buttons import football_matches, Seria_a, out_keyboard, full_news
 from aiogram.types import Message, CallbackQuery
+from utils.data_base.db_api import Database
 
+
+db = Database()
 
 @dp.callback_query_handler(text='cancel')
 @dp.callback_query_handler(text='seria_a')
@@ -48,6 +51,9 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='subscript')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Оформление подписки')
+    id = call.message.from_user.id
+    user_name = call.message.from_user.full_name
+    db.insert_user(id, user_name)
     await call.message.answer('В разработке!')
 
 

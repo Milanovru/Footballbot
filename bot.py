@@ -1,7 +1,6 @@
 from aiogram import executor
-from config import dp
+from config import dp, scheduler
 from handlers import dp
-from config import scheduler
 from handlers.user_text import send_message
 from utils.for_sheduler.from_cron import test_cron
 from utils.show_seria_a import show_matches, show_link_matches

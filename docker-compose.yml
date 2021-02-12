@@ -3,5 +3,5 @@ version: '3.1'
 services: 
   tgbot:
     build: .
-    command: make run
+    command: python bot.py
     restart: always

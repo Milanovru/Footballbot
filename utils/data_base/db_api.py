@@ -32,4 +32,15 @@ class Database:
             except psycopg2.DatabaseError as e:
                 print('ошибочка вышла')
             
-                
+
+    def delete_user(self, id):
+        with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),
+                              password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT")) as connection:
+            try:
+                with connection.cursor() as cursor:
+                    cursor.execute("""
+                            DELETE FROM Users WHERE id='{}';
+                    """.format(id))
+                    print('пользователь удален успешно')
+            except psycopg2.DatabaseError as e:
+                print('ошибочка вышла')
