@@ -19,7 +19,6 @@ class Database:
             except psycopg2.DatabaseError as e:
                 print('что-то пошло нетак')
                   
-
     def insert_user(self, id, name):
         with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),
                                       password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT")) as connection:
@@ -34,7 +33,6 @@ class Database:
             except:
                 return 'Вы уже подписаны'
             
-
     def delete_user(self, id):
         with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),
                               password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT")) as connection:
@@ -46,3 +44,15 @@ class Database:
                     return 'Вы больше не подписаны!'
             except psycopg2.DatabaseError as e:
                 return 'ошибка в работе с базой данных'
+
+    def select_subscribers(self):
+        with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),
+                              password=os.getenv("DB_PASSWORD"), host=os.getenv("DB_HOST"), port=os.getenv("DB_PORT")) as connection:
+            try:
+                with connection.cursor() as cursor:
+                    cursor.execute("""
+                            SELECT * FROM Users;
+                    """ )
+                    return cursor.fetchall()
+            except psycopg2.DatabaseError as e:
+                return 'ошибка в работе с базой данных' 
