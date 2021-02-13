@@ -51,6 +51,7 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='subscript')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Оформление подписки')
+    await call.answer('Пока подписка оформляется только на матчи Милана в Серии А')
     id = call.from_user.id
     user_name = call.from_user.full_name
     try:
