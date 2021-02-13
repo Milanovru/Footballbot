@@ -1,7 +1,26 @@
 version: '3.1'
 
-services: 
+services:
+  db:
+    container_name: database
+    image: postgres:latest
+    env_file:
+      - ".env"
+    environment:  
+      POSTGRES_PASSWORD: $DB_PASSWORD
+    restart: always
+    ports: 
+      - 5432:5432
+    networks: 
+      - botnet
+    volumes: 
+      - ./postgres:/var/lib/postgresql
+
   tgbot:
     build: .
     command: python bot.py
     restart: always
+
+  networks: 
+    botnet:
+      driver: bridge

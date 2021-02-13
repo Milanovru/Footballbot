@@ -29,9 +29,9 @@ class Database:
                     """.format(id, name))
                     return 'Вы подписались на матчи Милана!'
             except psycopg2.DatabaseError as e:
-                return 'ошибочка в работе с базой данных'
-            except:
                 return 'Вы уже подписаны'
+            except:
+                return 'ошибочка вышла'
             
     def delete_user(self, id):
         with psycopg2.connect(dbname=os.getenv("DB_NAME"), user=os.getenv("DB_USER"),

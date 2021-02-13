@@ -80,4 +80,4 @@ async def send_message(dp):  # это обработчик для шедулер
     subscribers = db.select_subscribers()
     for subscriber in subscribers:
         # ('1027622714', 'Pavel Milanov')
-        await dp.bot.send_message(subscriber[0], 'это сообщение по таймингу, Милан играет через 2 часа')
+        await dp.bot.send_message(subscriber[0], 'Милан играет через 2 часа, не пропусти')
