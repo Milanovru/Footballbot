@@ -6,7 +6,7 @@ from utils import send_information_seria_a, send_table_seria_a, send_news
 from utils.show_seria_a import show_matches, show_link_matches, show_table
 from utils.sports_ru_parse import show_new
 from utils.for_sheduler.from_cron import test_cron
-from buttons import football_matches, Seria_a, out_keyboard, full_news
+from buttons import *
 from aiogram.types import Message, CallbackQuery
 from utils.data_base.db_api import Database
 
@@ -18,6 +18,12 @@ db = Database()
 async def send_football(call: CallbackQuery):
     await call.answer('Меню Seria A')
     await call.message.edit_reply_markup(reply_markup=Seria_a) # пресылает другую клавиатуру в том же сообщении
+
+
+@dp.callback_query_handler(text='leage_list')
+async def leage_list(call: CallbackQuery):
+    await call.answer('Меню выбора лиг')
+    await call.message.edit_reply_markup(reply_markup=football_matches)
 
 
 @dp.callback_query_handler(text='anons_matches')
@@ -45,7 +51,7 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='table')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Таблица Seria A')  
-    await call.message.answer('<pre>{}</pre>'.format(send_table_seria_a(show_table)), reply_markup=out_keyboard)
+    await call.message.answer('<pre>{}</pre>\nИ - количество игр, О - количество очков'.format(send_table_seria_a(show_table)), reply_markup=out_keyboard)
     
 
 @dp.callback_query_handler(text='subscript')
