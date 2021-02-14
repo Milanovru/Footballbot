@@ -45,7 +45,7 @@ async def send_seria_a(call: CallbackQuery):
 @dp.callback_query_handler(text='table')
 async def send_seria_a(call: CallbackQuery):
     await call.answer('Таблица Seria A')  
-    await call.message.answer(send_table_seria_a(show_table), reply_markup=out_keyboard)
+    await call.message.answer('<pre>{}</pre>'.format(send_table_seria_a(show_table)), reply_markup=out_keyboard)
     
 
 @dp.callback_query_handler(text='subscript')
@@ -72,9 +72,8 @@ async def send_seria_a(call: CallbackQuery):
 
 @dp.message_handler(text='test')
 async def test(message: types.Message):
-    #test_cron(show_matches, show_link_matches)
-    #await message.answer(message.from_user.id)
     pass
+    
 
 async def send_message(dp):  # это обработчик для шедулера
     subscribers = db.select_subscribers()
