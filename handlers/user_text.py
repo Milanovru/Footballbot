@@ -19,7 +19,7 @@ async def send_football(call: CallbackQuery):
     await call.answer('Меню Seria A')
     await call.message.edit_reply_markup(reply_markup=Seria_a) # пресылает другую клавиатуру в том же сообщении
 
-
+# возвращает в меню выбора лиг
 @dp.callback_query_handler(text='leage_list')
 async def leage_list(call: CallbackQuery):
     await call.answer('Меню выбора лиг')
