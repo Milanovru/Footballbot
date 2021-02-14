@@ -11,7 +11,7 @@ show_commands = InlineKeyboardButton(text='Последние новости Ser
 Seria_a.add(show_commands)
 anons_matches = InlineKeyboardButton(text='Анонс матчей', callback_data='anons_matches')
 Seria_a.add(anons_matches)
-table_seria_a = InlineKeyboardButton(text='Таблица', callback_data='table')
+table_seria_a = InlineKeyboardButton(text='Турнирная таблица', callback_data='table')
 Seria_a.add(table_seria_a)
 
 
