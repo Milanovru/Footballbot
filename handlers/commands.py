@@ -29,4 +29,4 @@ async def create_db(message: types.Message):
 
 @dp.message_handler(commands=['subscriptions'])
 async def start_command(message: types.Message):
-    await message.answer('Что хочешь сделать?', reply_markup=subscriptions)
+    await message.answer('Здесь можно управлять своими подписками на матчи и новости ⚽️', reply_markup=subscriptions)

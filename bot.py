@@ -12,13 +12,13 @@ def started_match():
       show_matches, show_link_matches)
 
   scheduler.add_job(send_match, "cron", day = day_cron,
-                   hour=hour_cron, minute=minute_cron, args=(dp,))
+                    hour=hour_cron, minute=minute_cron, args=(dp,))
 
 
 def breaking_news():
   day_cron, hour_cron, minute_cron = get_breaking_news(show_new)
   scheduler.add_job(send_new, "cron", day=day_cron,
-                    hour=hour_cron, minute=minute_cron, args=(dp,))
+                    hour=hour_cron, minute=minute_cron, args=(dp,), jitter=120)
   
 
 if __name__ == "__main__":
