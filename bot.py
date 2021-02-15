@@ -1,21 +1,31 @@
 from aiogram import executor
 from config import dp, scheduler
 from handlers import dp
-from handlers.user_text import send_message
-from utils.for_sheduler.from_cron import test_cron
+from handlers.user_text import send_match, send_new
+from utils.for_sheduler.from_cron import get_started_match, get_breaking_news
 from utils.show_seria_a import show_matches, show_link_matches
+from utils.sports_ru_parse import show_new
 
 
-def shedule_jobs():
-  day_cron, hour_cron, minute_cron = test_cron(show_matches, show_link_matches)
-  scheduler.add_job(send_message, "cron", day = day_cron,
+def started_match():
+  day_cron, hour_cron, minute_cron = get_started_match(
+      show_matches, show_link_matches)
+
+  scheduler.add_job(send_match, "cron", day = day_cron,
                    hour=hour_cron, minute=minute_cron, args=(dp,))
-                   
-    
+
+
+def breaking_news():
+  day_cron, hour_cron, minute_cron = get_breaking_news(show_new)
+  scheduler.add_job(send_new, "cron", day=day_cron,
+                    hour=hour_cron, minute=minute_cron, args=(dp,))
+  
+
 if __name__ == "__main__":
 
   async def on_startup(dp):
-    shedule_jobs()
+    started_match()
+    breaking_news()
 
 scheduler.start()
 

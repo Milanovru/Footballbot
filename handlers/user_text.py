@@ -5,7 +5,7 @@ from aiogram.dispatcher import FSMContext
 from utils import send_information_seria_a, send_table_seria_a, send_news
 from utils.show_seria_a import show_matches, show_link_matches, show_table
 from utils.sports_ru_parse import show_new
-from utils.for_sheduler.from_cron import test_cron
+from utils.for_sheduler.from_cron import get_breaking_news
 from buttons import *
 from aiogram.types import Message, CallbackQuery
 from utils.data_base.db_api import Database
@@ -78,11 +78,16 @@ async def send_seria_a(call: CallbackQuery):
 
 @dp.message_handler(text='test')
 async def test(message: types.Message):
-    pass
+    get_breaking_news(show_new=show_new)
     
 
-async def send_message(dp):  # это обработчик для шедулера
+async def send_match(dp):  # это обработчик для шедулера
     subscribers = db.select_subscribers()
     for subscriber in subscribers:
         # ('1027622714', 'Pavel Milanov')
         await dp.bot.send_message(subscriber[0], 'Милан играет в итальянской лиге!')
+
+
+async def send_new(dp):  # это обработчик для шедулера
+    date, news = send_news(show_new)
+    await dp.bot.send_message(1027622714, news[0])
