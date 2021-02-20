@@ -1,8 +1,8 @@
-version: '3.1'
+version: '3.5'
 
 services:
   db:
-    container_name: database
+    container_name: botbase
     image: postgres:latest
     env_file:
       - ".env"
@@ -20,7 +20,13 @@ services:
     build: .
     command: python bot.py
     restart: always
+    networks: 
+      - botnet
+    env_file: 
+      - ".env"
+    depends_on: 
+      - db
 
-  networks: 
-    botnet:
-      driver: bridge
+networks: 
+  botnet:
+    driver: bridge

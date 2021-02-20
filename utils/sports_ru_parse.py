@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from fake_useragent import UserAgent
 
 
-ua = UserAgent(use_cache_server=False, verify_ssl=False)
+ua = UserAgent(use_cache_server=False, verify_ssl=False, cache=False)
 headers = {'headers': ua.random}
 responce_italy = requests.get(os.getenv('PARSE_LINK_ITALY'), headers=headers).text
 responce_news = requests.get(
