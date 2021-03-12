@@ -10,10 +10,11 @@ from utils.sports_ru_parse import show_new
 def started_match():
   day_cron, hour_cron, minute_cron = get_started_match(
       show_matches, show_link_matches)
-
-  scheduler.add_job(send_match, "cron", day = day_cron,
-                    hour=hour_cron, minute=minute_cron, args=(dp,))
-
+  try:
+    scheduler.add_job(send_match, "cron", day= int(day_cron),
+                      hour= int(hour_cron), minute= int(minute_cron), args=(dp,))
+  except:
+    pass
 
 def breaking_news():
   day_cron, hour_cron, minute_cron = get_breaking_news(show_new)
