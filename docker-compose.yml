@@ -14,7 +14,7 @@ services:
     networks: 
       - botnet
     volumes: 
-      - ./postgres:/var/lib/postgresql
+      - ./postgres:/var/lib/postgresql/data
 
   tgbot:
     build: .
@@ -30,3 +30,7 @@ services:
 networks: 
   botnet:
     driver: bridge
+
+volumes:
+  postgres:
+  
